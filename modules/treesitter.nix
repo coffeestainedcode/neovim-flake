@@ -7,17 +7,12 @@ let
 in {
     options.customNeovim.treesitter = {
         enable = mkEnableOption "Enable tree-sitter";
-        grammars = mkOption {
-            description = "List of langauges to enable";
-            default = [];
-            type = with types; listOf package;
-        };
     };
 
     config = mkIf cfg.enable {
-        customNeovim.startupPlugins = with pkgs.neovimPlugins; [
-            nvim-treesitter
-            nvim-treesitter-textobjects
+        customNeovim.plugins = [
+            "nvim-treesitter"
+            "nvim-treesitter-textobjects"
         ];
         customNeovim.configRC = ''
             require('nvim-treesitter.configs').setup {

@@ -98,6 +98,22 @@
         "type": "github"
       }
     },
+    "plenary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681122243,
+        "narHash": "sha256-tG+BrCgE1L7QMbchSzjLfQfpI09uTQXbx7OeFuVEcDQ=",
+        "owner": "nvim-lua",
+        "repo": "plenary.nvim",
+        "rev": "9ac3e9541bbabd9d73663d757e4fe48a675bb054",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-lua",
+        "repo": "plenary.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -106,6 +122,8 @@
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "onedark-nvim": "onedark-nvim",
+        "plenary": "plenary",
+        "telescope": "telescope",
         "vim-sleuth": "vim-sleuth",
         "which-key": "which-key"
       }
@@ -122,6 +140,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "telescope": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683434872,
+        "narHash": "sha256-7MT1sWYqzJ5gx6w3s7Ij/2mJ9KzzQYX2GmCIbmltIQY=",
+        "owner": "nvim-telescope",
+        "repo": "telescope.nvim",
+        "rev": "d77b37f4520e5fc2cf4c74c12e42ed4b589bd367",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope.nvim",
         "type": "github"
       }
     },

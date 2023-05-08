@@ -28,15 +28,9 @@ in {
             default = "";
         };
 
-        startupPlugins = mkOption {
-            description = "Plugins to load on start";
-            type = with types; listOf (nullOr package);
-            default = [];
-        };
-
-        optionalPlugins = mkOption {
-            description = "Plugins to be optionally loaded";
-            type = with types; listOf (nullOr package);
+        plugins = mkOption {
+            description = "testing string based plugins";
+            type = with types; listOf string;
             default = [];
         };
     };
@@ -44,5 +38,6 @@ in {
     imports = [
         ./options.nix
         ./treesitter.nix
+        ./telescope.nix
     ];
 }

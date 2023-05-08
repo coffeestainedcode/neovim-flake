@@ -5,11 +5,13 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
         flake-utils.url = "github:numtide/flake-utils";
 
-        # Plugins
-
-        # Syntax-tree sitter
+        # Treesitter
         nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
         nvim-treesitter-textobjects = { url = "github:nvim-treesitter/nvim-treesitter-textobjects"; flake = false; };
+
+        # Telescope
+        telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+        plenary = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
 
         # LSP
 
@@ -28,42 +30,10 @@
 
     outputs = { self, nixpkgs, flake-utils, ... }@inputs:
         flake-utils.lib.eachDefaultSystem (system: let
-            pluginOverlay = final: prev: let
-                inherit (prev.vimUtils) buildVimPluginFrom2Nix;
-                plugins = builtins.attrNames
-                    ( builtins.removeAttrs inputs
-                    [ "self" "nixpkgs" "flake-utils" ] );
-                buildPlug = name: buildVimPluginFrom2Nix {
-                    pname = name;
-                    version = "master";
-                    src = builtins.getAttr name inputs;
-                };
-                buildTreesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins
-                    # (_: config.customNeovim.treesitter.grammars);
-                    (grammar : with grammar; [ ocaml zig lua ]);
-
-                in {
-                    neovimPlugins = builtins.listToAttrs (map
-                        (name: {
-                            name = name;
-                            value = (
-                                if name == "nvim-treesitter" then
-                                    buildTreesitter
-                                else
-                                    buildPlug name);
-                        })
-                        plugins);
-                };
-
             pkgs = import nixpkgs {
                 inherit system;
-                overlays = [
-                    pluginOverlay
-                ];
             };
-
             neovimBuilder = (import ./neovimBuilder.nix);
-
         in rec {
             apps.${system}.default = apps.nvim;
             packages.default = packages.customNeovim;
@@ -74,10 +44,10 @@
             };
 
             packages.customNeovim = neovimBuilder {
-                inherit pkgs;
+                inherit pkgs inputs;
                 config.customNeovim = {
                     treesitter.enable = true;
-                    # treesitter.grammars = wi[ rust ];
+                    telescope.enable = true;
                 };
             };
         }

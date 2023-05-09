@@ -11,12 +11,12 @@
 
         # Telescope
         telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
-        telescope-fzf-native = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false;};
+        telescope-fzf-native = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false; };
         plenary = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
 
-        # LSP
-
-        # Autocomplete
+        # Nvim-tree
+        nvim-tree = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
+        nvim-web-devicons = { url = "github:nvim-tree/nvim-web-devicons"; flake = false; };
 
         # Surround words and whatnot with keybinds
         nvim-surround = { url = "github:kylechui/nvim-surround"; flake = false; };
@@ -50,6 +50,7 @@
                     config.customNeovim = {
                         treesitter.enable = true;
                         telescope.enable = true;
+                        nvim-tree.enable = true;
                         which-key.enable = true;
                     };
                 };

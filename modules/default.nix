@@ -53,6 +53,7 @@ in {
 
     imports = [
         ./options.nix
+        ./nvim-tree.nix
         ./telescope.nix
         ./treesitter.nix
         ./whichkey.nix

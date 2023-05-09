@@ -50,6 +50,22 @@
         "type": "github"
       }
     },
+    "nvim-tree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683351432,
+        "narHash": "sha256-ucWj/W+7L7Su8NblJ7IIp39x8Fj3DrcM+kEgku1YlGg=",
+        "owner": "nvim-tree",
+        "repo": "nvim-tree.lua",
+        "rev": "270c95556cad96d18ca547d86ae65927334b108b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-tree",
+        "repo": "nvim-tree.lua",
+        "type": "github"
+      }
+    },
     "nvim-treesitter": {
       "flake": false,
       "locked": {
@@ -79,6 +95,22 @@
       "original": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
+    "nvim-web-devicons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683422244,
+        "narHash": "sha256-+UH04+Bu167fthQntUATik9wl/vRfkMJ/A9JheaHx9w=",
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
+        "rev": "986875b7364095d6535e28bd4aac3a9357e91bbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-tree",
+        "repo": "nvim-web-devicons",
         "type": "github"
       }
     },
@@ -119,8 +151,10 @@
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "nvim-surround": "nvim-surround",
+        "nvim-tree": "nvim-tree",
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
+        "nvim-web-devicons": "nvim-web-devicons",
         "onedark-nvim": "onedark-nvim",
         "plenary": "plenary",
         "telescope": "telescope",

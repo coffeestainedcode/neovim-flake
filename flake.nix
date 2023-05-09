@@ -52,6 +52,8 @@
                         telescope.enable = true;
                         nvim-tree.enable = true;
                         which-key.enable = true;
+                        vim-sleuth.enable = true;
+                        nvim-surround.enable = true;
                     };
                 };
                 default = customNeovim;

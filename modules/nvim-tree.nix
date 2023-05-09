@@ -6,7 +6,7 @@ let
     cfg = config.customNeovim.nvim-tree;
 in {
     options.customNeovim.nvim-tree = {
-        enable = mkEnableOption "Enable which-key";
+        enable = mkEnableOption "Enable nvim-tree";
     };
 
     config = mkIf cfg.enable {

@@ -39,9 +39,16 @@ in pkgs.wrapNeovim pkgs.neovim-unwrapped {
     viAlias =  vimOptions.config.customNeovim.viAlias;
     vimAlias = vimOptions.config.customNeovim.vimAlias;
     configure = {
-        customRC = ''
+        customRC = let
+            # Sort based on priority number
+            sortedConfigRC = builtins.sort
+                (a: b: a.priority < b.priority)
+                vimOptions.config.customNeovim.configRC;
+            # Concat to spit out to a file
+            stringInput = builtins.concatStringsSep "\n" (map (a: a.content) sortedConfigRC);
+        in ''
             lua << EOF
-                ${vimOptions.config.customNeovim.configRC}
+                ${stringInput}
             EOF
         '';
         packages.myVimPackage = {

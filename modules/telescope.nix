@@ -14,9 +14,12 @@ in {
             "plenary"
             "telescope"
         ];
-        customNeovim.configRC = ''
-            require("telescope").setup {
-            }
-        '';
+        customNeovim.configRC = [{
+            priority = 1;
+            content = ''
+                require("telescope").setup {
+                }
+            '';
+        }];
     };
 }

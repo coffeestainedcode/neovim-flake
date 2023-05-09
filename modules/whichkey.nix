@@ -13,9 +13,12 @@ in {
         customNeovim.plugins = [
             "which-key"
         ];
-        customNeovim.configRC = ''
-            require('which-key').setup {
-            }
-        '';
+        customNeovim.configRC = [{
+            priority = 1;
+            content = ''
+                require('which-key').setup {
+                }
+            '';
+        }];
     };
 }

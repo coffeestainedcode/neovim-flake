@@ -22,10 +22,26 @@ in {
             default = false; 
         };
 
+        /*
+            configRC exists as a listOf attrs such that
+            attrs = {
+                priority = int;
+                content = lines;
+            };
+            and priority starts at highest (0) and icreases.
+            The point of this is to allow the RC content
+            to be sorted so that certain lines occur before
+            others.
+            I suspect this approach may be too naive to last,
+            as it currently only sorts by priority number and
+            nothing else. If in the future, I wanted to define
+            more complicated relations between nodes, I would
+            need to implement a DAG instead.
+        */
         configRC = mkOption {
             description = "Vim Config (lua)";
-            type = types.lines;
-            default = "";
+            type = with types; listOf attrs;
+            default = [];
         };
 
         plugins = mkOption {

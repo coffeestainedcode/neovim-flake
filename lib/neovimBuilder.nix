@@ -32,7 +32,11 @@
                 vimOptions.config.customNeovim.treesitter.grammars;
         in pkgs.vimPlugins.nvim-treesitter.withPlugins (_: grammarPackages);
     in map
-        (name: (if name == "nvim-treesitter" then buildTreesitter else buildPlug name))
+        (name: (if name == "nvim-treesitter" then buildTreesitter
+                # We need to check for this specific package as building from source
+                # doesn't seem to work...
+                else if name == "telescope-fzf-native" then pkgs.vimPlugins.telescope-fzf-native-nvim
+                else buildPlug name))
         vimOptions.config.customNeovim.plugins;
         
 in pkgs.wrapNeovim pkgs.neovim-unwrapped {

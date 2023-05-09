@@ -11,6 +11,7 @@
 
         # Telescope
         telescope = { url = "github:nvim-telescope/telescope.nvim"; flake = false; };
+        telescope-fzf-native = { url = "github:nvim-telescope/telescope-fzf-native.nvim"; flake = false;};
         plenary = { url = "github:nvim-lua/plenary.nvim"; flake = false; };
 
         # LSP

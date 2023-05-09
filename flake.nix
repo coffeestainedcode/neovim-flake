@@ -49,6 +49,7 @@
                     config.customNeovim = {
                         treesitter.enable = true;
                         telescope.enable = true;
+                        which-key.enable = true;
                     };
                 };
                 default = customNeovim;

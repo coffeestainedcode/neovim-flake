@@ -37,7 +37,8 @@ in {
 
     imports = [
         ./options.nix
-        ./treesitter.nix
         ./telescope.nix
+        ./treesitter.nix
+        ./whichkey.nix
     ];
 }

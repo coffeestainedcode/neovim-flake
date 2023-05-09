@@ -33,7 +33,7 @@
             pkgs = import nixpkgs {
                 inherit system;
             };
-            neovimBuilder = (import ./neovimBuilder.nix);
+            neovimBuilder = (import ./lib/neovimBuilder.nix);
         in rec {
             apps.${system} = rec {
                 nvim = {

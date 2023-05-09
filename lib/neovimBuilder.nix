@@ -5,7 +5,7 @@
     # Constructs the configuration via options
     vimOptions = pkgs.lib.evalModules {
         modules = [
-            { imports = [./modules]; }
+            { imports = [../modules]; }
             config 
         ];
         specialArgs = {

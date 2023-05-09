@@ -35,20 +35,23 @@
             };
             neovimBuilder = (import ./neovimBuilder.nix);
         in rec {
-            apps.${system}.default = apps.nvim;
-            packages.default = packages.customNeovim;
-
-            apps.nvim = {
-                type = "app";
-                program = "${packages.default}/bin/nvim";
+            apps.${system} = rec {
+                nvim = {
+                    type = "app";
+                    program = "${packages.default}/bin/nvim";
+                };
+                default = nvim;
             };
 
-            packages.customNeovim = neovimBuilder {
-                inherit pkgs inputs;
-                config.customNeovim = {
-                    treesitter.enable = true;
-                    telescope.enable = true;
+            packages = rec {
+                customNeovim = neovimBuilder {
+                    inherit pkgs inputs;
+                    config.customNeovim = {
+                        treesitter.enable = true;
+                        telescope.enable = true;
+                    };
                 };
+                default = customNeovim;
             };
         }
     );

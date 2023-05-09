@@ -29,8 +29,8 @@ in {
         };
 
         plugins = mkOption {
-            description = "testing string based plugins";
-            type = with types; listOf string;
+            description = "Plugins to use";
+            type = with types; listOf str;
             default = [];
         };
     };

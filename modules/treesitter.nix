@@ -18,10 +18,10 @@ in {
             "nvim-treesitter"
             "nvim-treesitter-textobjects"
         ];
-        customNeovim.treesitter.grammars = [
-            "ocaml"
-            "llvm"
-        ];
+        # customNeovim.treesitter.grammars = [
+        #     "ocaml"
+        #     "llvm"
+        # ];
         customNeovim.configRC = ''
             require('nvim-treesitter.configs').setup {
                 -- Add languages to be installed here that you want installed for treesitter

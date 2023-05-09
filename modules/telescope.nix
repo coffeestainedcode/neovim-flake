@@ -11,12 +11,12 @@ in {
 
     config = mkIf cfg.enable {
         customNeovim.plugins = [
-          "plenary"
-          "telescope"
+            "plenary"
+            "telescope"
         ];
         customNeovim.configRC = ''
-          require("telescope").setup {
-          }
+            require("telescope").setup {
+            }
         '';
     };
 }

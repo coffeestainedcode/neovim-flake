@@ -18,17 +18,14 @@
         nvim-tree = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
         nvim-web-devicons = { url = "github:nvim-tree/nvim-web-devicons"; flake = false; };
 
-        # Gitsigns
+        # Misc
         gitsigns = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
-
         lualine = { url = "github:nvim-lualine/lualine.nvim"; flake = false; };
-
-        # Surround words and whatnot with keybinds
         nvim-surround = { url = "github:kylechui/nvim-surround"; flake = false; };
-        # Detect shiftwidth and tabstop automatically
         vim-sleuth = { url = "github:tpope/vim-sleuth"; flake = false; };
-        # Show keybinds dynamically
         which-key = { url = "github:folke/which-key.nvim"; flake = false; };
+        indent-blankline = { url = "github:lukas-reineke/indent-blankline.nvim"; flake = false; };
+        comment = { url = "github:numToStr/Comment.nvim"; flake = false; };
 
         # Themes
         onedark-nvim = { url = "github:navarasu/onedark.nvim"; flake = false; };
@@ -53,7 +50,9 @@
                 customNeovim = neovimBuilder {
                     inherit pkgs inputs;
                     config.customNeovim = {
+                        comment.enable = true;
                         gitsigns.enable = true;
+                        indent-blankline.enable = true;
                         lualine.enable = true;
                         treesitter.enable = true;
                         telescope.enable = true;

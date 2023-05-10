@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "comment": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683091103,
+        "narHash": "sha256-CMHkf+0T5FRMcqD6zGFo5IHrgT0xbZXe1UgOs+b1148=",
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "rev": "e1fe53117aab24c378d5e6deaad786789c360123",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numToStr",
+        "repo": "Comment.nvim",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -31,6 +47,22 @@
       "original": {
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
+        "type": "github"
+      }
+    },
+    "indent-blankline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676854912,
+        "narHash": "sha256-dBm0vnza+fBYxlgUDR1/57GZ+kd7CUVgkQIcZEFWl9k=",
+        "owner": "lukas-reineke",
+        "repo": "indent-blankline.nvim",
+        "rev": "018bd04d80c9a73d399c1061fa0c3b14a7614399",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lukas-reineke",
+        "repo": "indent-blankline.nvim",
         "type": "github"
       }
     },
@@ -180,8 +212,10 @@
     },
     "root": {
       "inputs": {
+        "comment": "comment",
         "flake-utils": "flake-utils",
         "gitsigns": "gitsigns",
+        "indent-blankline": "indent-blankline",
         "lualine": "lualine",
         "nixpkgs": "nixpkgs",
         "nvim-surround": "nvim-surround",

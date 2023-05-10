@@ -52,7 +52,9 @@ in {
     };
 
     imports = [
+        ./comment.nix
         ./gitsigns.nix
+        ./indent-blankline.nix
         ./lualine.nix
         ./options.nix
         ./nvim-surround.nix

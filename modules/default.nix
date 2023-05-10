@@ -28,7 +28,7 @@ in {
                 priority = int;
                 content = lines;
             };
-            and priority starts at highest (0) and icreases.
+            and priority starts at highest (0) and increases.
             The point of this is to allow the RC content
             to be sorted so that certain lines occur before
             others.

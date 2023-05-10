@@ -20,6 +20,23 @@ in {
             content = ''
                 require('telescope').setup {
                     defaults = {
+                        -- Sets up live_grep
+                        vimgrep_arguments = {
+                            "${pkgs.ripgrep}/bin/rg",
+                            "--color=never",
+                            "--no-heading",
+                            "--with-filename",
+                            "--line-number",
+                            "--column",
+                            "--smart-case",
+                            "--hidden",
+                            "--no-ignore",
+                        },
+                        pickers = {
+                            find_command = {
+                                "${pkgs.fd}/bin/fd",
+                            },
+                          },
                         mappings = {
                             i = {
                                 ['<C-u>'] = false,

@@ -52,6 +52,7 @@ in {
     };
 
     imports = [
+        ./gitsigns.nix
         ./options.nix
         ./nvim-surround.nix
         ./nvim-tree.nix

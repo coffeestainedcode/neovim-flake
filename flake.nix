@@ -18,6 +18,9 @@
         nvim-tree = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
         nvim-web-devicons = { url = "github:nvim-tree/nvim-web-devicons"; flake = false; };
 
+        # Gitsigns
+        gitsigns = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
+
         # Surround words and whatnot with keybinds
         nvim-surround = { url = "github:kylechui/nvim-surround"; flake = false; };
         # Detect shiftwidth and tabstop automatically
@@ -48,6 +51,7 @@
                 customNeovim = neovimBuilder {
                     inherit pkgs inputs;
                     config.customNeovim = {
+                        gitsigns.enable = true;
                         treesitter.enable = true;
                         telescope.enable = true;
                         nvim-tree.enable = true;

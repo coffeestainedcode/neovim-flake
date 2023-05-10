@@ -18,6 +18,22 @@
         "type": "github"
       }
     },
+    "gitsigns": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682681315,
+        "narHash": "sha256-4ZDiDF3qTWKViFgiCqhvqKRtubO2P/pcu9Unxf+AfLw=",
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "rev": "e5edefd9976039f5352e0c900f35206770b33a2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1683594133,
@@ -149,6 +165,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "gitsigns": "gitsigns",
         "nixpkgs": "nixpkgs",
         "nvim-surround": "nvim-surround",
         "nvim-tree": "nvim-tree",

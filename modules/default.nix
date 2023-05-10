@@ -53,6 +53,7 @@ in {
 
     imports = [
         ./gitsigns.nix
+        ./lualine.nix
         ./options.nix
         ./nvim-surround.nix
         ./nvim-tree.nix

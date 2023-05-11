@@ -18,10 +18,6 @@ in {
             "nvim-treesitter"
             "nvim-treesitter-textobjects"
         ];
-        # customNeovim.treesitter.grammars = [
-        #     "ocaml"
-        #     "llvm"
-        # ];
         customNeovim.configRC = [{
             priority = 1;
             content = ''

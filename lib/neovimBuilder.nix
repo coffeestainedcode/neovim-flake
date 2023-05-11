@@ -37,7 +37,7 @@
                 # doesn't seem to work...
                 else if name == "telescope-fzf-native" then pkgs.vimPlugins.telescope-fzf-native-nvim
                 else buildPlug name))
-        vimOptions.config.customNeovim.plugins;
+        (builtins.filter (f: f != "") vimOptions.config.customNeovim.plugins);
         
 in pkgs.wrapNeovim pkgs.neovim-unwrapped {
     viAlias =  vimOptions.config.customNeovim.viAlias;

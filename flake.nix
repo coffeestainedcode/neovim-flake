@@ -28,7 +28,10 @@
         comment = { url = "github:numToStr/Comment.nvim"; flake = false; };
 
         # Themes
-        onedark-nvim = { url = "github:navarasu/onedark.nvim"; flake = false; };
+        catppuccin = { url = "github:catppuccin/nvim"; flake = false; };
+        tokyonight = { url = "github:folke/tokyonight.nvim"; flake = false; };
+        gruvbox = { url = "github:ellisonleao/gruvbox.nvim"; flake = false; };
+        onedark = { url = "github:navarasu/onedark.nvim"; flake = false; };
     };
 
     outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -60,6 +63,28 @@
                         which-key.enable = true;
                         vim-sleuth.enable = true;
                         nvim-surround.enable = true;
+                        theme = {
+                            catppuccin = {
+                                enable = true;
+                                setOnStartup = false;
+                                style = "latte";
+                            };
+                            tokyonight = {
+                                enable = true;
+                                setOnStartup = true;
+                                style = "storm";
+                            };
+                            gruvbox = {
+                                enable = true;
+                                setOnStartup = false;
+                                style = "light";
+                            };
+                            onedark = {
+                                enable = true;
+                                setOnStartup = false;
+                                style = "dark";
+                            };
+                        };
                     };
                 };
                 default = customNeovim;

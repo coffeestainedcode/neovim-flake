@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "catppuccin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683711270,
+        "narHash": "sha256-mMeN83dsE1AgfcoLn03V1L4JyVF1RKIMURvHOht1ecE=",
+        "owner": "catppuccin",
+        "repo": "nvim",
+        "rev": "57b421ee5f7380f816791fa451e86f213b625ece",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "comment": {
       "flake": false,
       "locked": {
@@ -47,6 +63,22 @@
       "original": {
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
+        "type": "github"
+      }
+    },
+    "gruvbox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682256511,
+        "narHash": "sha256-XTwPcq1dyZKVy1b+FUUjMEHndpcTPYSp1p7bx9m8+Bg=",
+        "owner": "ellisonleao",
+        "repo": "gruvbox.nvim",
+        "rev": "df149bccb19a02c5c2b9fa6ec0716f0c0487feb0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ellisonleao",
+        "repo": "gruvbox.nvim",
         "type": "github"
       }
     },
@@ -178,7 +210,7 @@
         "type": "github"
       }
     },
-    "onedark-nvim": {
+    "onedark": {
       "flake": false,
       "locked": {
         "lastModified": 1683327179,
@@ -212,9 +244,11 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "comment": "comment",
         "flake-utils": "flake-utils",
         "gitsigns": "gitsigns",
+        "gruvbox": "gruvbox",
         "indent-blankline": "indent-blankline",
         "lualine": "lualine",
         "nixpkgs": "nixpkgs",
@@ -223,10 +257,11 @@
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-textobjects": "nvim-treesitter-textobjects",
         "nvim-web-devicons": "nvim-web-devicons",
-        "onedark-nvim": "onedark-nvim",
+        "onedark": "onedark",
         "plenary": "plenary",
         "telescope": "telescope",
         "telescope-fzf-native": "telescope-fzf-native",
+        "tokyonight": "tokyonight",
         "vim-sleuth": "vim-sleuth",
         "which-key": "which-key"
       }
@@ -275,6 +310,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope-fzf-native.nvim",
+        "type": "github"
+      }
+    },
+    "tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683480785,
+        "narHash": "sha256-iSPPwXkTUCtDG5GsQzaFmo+9o/E4XLiGDGLhOeRrN9E=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "df13e3268a44f142999fa166572fe95a650a0b37",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },

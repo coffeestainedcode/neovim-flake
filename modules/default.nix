@@ -60,6 +60,7 @@ in {
         ./nvim-surround.nix
         ./nvim-tree.nix
         ./telescope.nix
+        ./theme.nix
         ./treesitter.nix
         ./whichkey.nix
         ./vim-sleuth.nix

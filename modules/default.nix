@@ -44,7 +44,7 @@ in {
             default = [];
         };
 
-        plugins = mkOption {
+        installedPlugins = mkOption {
             description = "Plugins to use";
             type = with types; listOf str;
             default = [];
@@ -52,21 +52,24 @@ in {
     };
 
     imports = [
+        ./options.nix
+        ./theme.nix
         # Import languages default
         ./languages
 
         # Import plugins
-        ./comment.nix
-        ./gitsigns.nix
-        ./indent-blankline.nix
-        ./lualine.nix
-        ./options.nix
-        ./nvim-surround.nix
-        ./nvim-tree.nix
-        ./telescope.nix
-        ./theme.nix
-        ./treesitter.nix
-        ./whichkey.nix
-        ./vim-sleuth.nix
+        ./plugins
+        # ./comment.nix
+        # ./gitsigns.nix
+        # ./indent-blankline.nix
+        # ./lualine.nix
+        # ./options.nix
+        # ./nvim-surround.nix
+        # ./nvim-tree.nix
+        # ./telescope.nix
+        # ./theme.nix
+        # ./treesitter.nix
+        # ./whichkey.nix
+        # ./vim-sleuth.nix
     ];
 }

@@ -14,7 +14,7 @@ in {
         customNeovim.languages.cmp.enable = true;
         customNeovim.languages.snippets.enable = true;
         
-        customNeovim.treesitter.grammars = [
+        customNeovim.plugins.treesitter.grammars = [
             "nix"
         ];
 

@@ -61,16 +61,18 @@
                 customNeovim = neovimBuilder {
                     inherit pkgs inputs;
                     config.customNeovim = {
-                        comment.enable = true;
-                        gitsigns.enable = true;
-                        indent-blankline.enable = true;
-                        lualine.enable = true;
-                        treesitter.enable = true;
-                        telescope.enable = true;
-                        nvim-tree.enable = true;
-                        which-key.enable = true;
-                        vim-sleuth.enable = true;
-                        nvim-surround.enable = true;
+                        plugins = {
+                            comment.enable = true;
+                            gitsigns.enable = true;
+                            indent-blankline.enable = true;
+                            lualine.enable = true;
+                            treesitter.enable = true;
+                            telescope.enable = true;
+                            nvim-tree.enable = true;
+                            which-key.enable = true;
+                            vim-sleuth.enable = true;
+                            nvim-surround.enable = true;
+                        };
                         languages = {
                             nix.enable = true;
                         };

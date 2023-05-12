@@ -11,7 +11,7 @@ in {
     };
 
     config = {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             (if cfg.lsp.enable then "lsp-config" else "")
             (if cfg.lsp.enable then "fidget" else "")
             (if cfg.cmp.enable then "nvim-cmp" else "")

@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.indent-blankline;
+    cfg = config.customNeovim.plugins.indent-blankline;
 in {
-    options.customNeovim.indent-blankline = {
+    options.customNeovim.plugins.indent-blankline = {
         enable = mkEnableOption "Enable indent-blankline";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "indent-blankline"
         ];
 

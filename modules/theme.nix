@@ -24,7 +24,7 @@ in {
     };
 
     config = {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             (if (cfg.catppuccin.enable) then "catppuccin" else "")
             (if (cfg.tokyonight.enable) then "tokyonight" else "")
             (if (cfg.gruvbox.enable)    then "gruvbox"    else "")

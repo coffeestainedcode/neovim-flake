@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.nvim-tree;
+    cfg = config.customNeovim.plugins.nvim-tree;
 in {
-    options.customNeovim.nvim-tree = {
+    options.customNeovim.plugins.nvim-tree = {
         enable = mkEnableOption "Enable nvim-tree";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "nvim-tree"
             "nvim-web-devicons"
         ];

@@ -29,7 +29,7 @@
                 };
             grammarPackages = map
                 (name: (mkGrammarOption pkgs name).default)
-                vimOptions.config.customNeovim.treesitter.grammars;
+                vimOptions.config.customNeovim.plugins.treesitter.grammars;
         in pkgs.vimPlugins.nvim-treesitter.withPlugins (_: grammarPackages);
     in map
         (name: (if name == "nvim-treesitter" then buildTreesitter
@@ -37,7 +37,7 @@
                 # doesn't seem to work...
                 else if name == "telescope-fzf-native" then pkgs.vimPlugins.telescope-fzf-native-nvim
                 else buildPlug name))
-        (builtins.filter (f: f != "") vimOptions.config.customNeovim.plugins);
+        (builtins.filter (f: f != "") vimOptions.config.customNeovim.installedPlugins);
         
 in pkgs.wrapNeovim pkgs.neovim-unwrapped {
     viAlias =  vimOptions.config.customNeovim.viAlias;

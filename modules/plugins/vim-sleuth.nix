@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.vim-sleuth;
+    cfg = config.customNeovim.plugins.vim-sleuth;
 in {
-    options.customNeovim.vim-sleuth = {
+    options.customNeovim.plugins.vim-sleuth = {
         enable = mkEnableOption "Enable vim-sleuth";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "vim-sleuth"
         ];
     };

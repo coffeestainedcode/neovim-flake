@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.telescope;
+    cfg = config.customNeovim.plugins.telescope;
 in {
-    options.customNeovim.telescope = {
+    options.customNeovim.plugins.telescope = {
         enable = mkEnableOption "Enable telescope";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "plenary"
             "telescope"
             "telescope-fzf-native"

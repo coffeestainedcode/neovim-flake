@@ -3,9 +3,9 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.treesitter;
+    cfg = config.customNeovim.plugins.treesitter;
 in {
-    options.customNeovim.treesitter = {
+    options.customNeovim.plugins.treesitter = {
         enable = mkEnableOption "Enable tree-sitter";
         grammars = mkOption {
             type = with types; listOf str;
@@ -14,7 +14,7 @@ in {
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "nvim-treesitter"
             "nvim-treesitter-textobjects"
         ];

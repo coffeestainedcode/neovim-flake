@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.lualine;
+    cfg = config.customNeovim.plugins.lualine;
 in {
-    options.customNeovim.lualine = {
+    options.customNeovim.plugins.lualine = {
         enable = mkEnableOption "Enable lualine";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "lualine"
         ];
 

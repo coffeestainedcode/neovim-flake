@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.gitsigns;
+    cfg = config.customNeovim.plugins.gitsigns;
 in {
-    options.customNeovim.gitsigns = {
+    options.customNeovim.plugins.gitsigns = {
         enable = mkEnableOption "Enable gitsigns";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "gitsigns"
         ];
 

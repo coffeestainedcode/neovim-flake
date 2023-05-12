@@ -3,14 +3,14 @@ with lib;
 with builtins;
 
 let
-    cfg = config.customNeovim.nvim-surround;
+    cfg = config.customNeovim.plugins.nvim-surround;
 in {
-    options.customNeovim.nvim-surround = {
+    options.customNeovim.plugins.nvim-surround = {
         enable = mkEnableOption "Enable vim-surround";
     };
 
     config = mkIf cfg.enable {
-        customNeovim.plugins = [
+        customNeovim.installedPlugins = [
             "nvim-surround"
         ];
         customNeovim.configRC = [{

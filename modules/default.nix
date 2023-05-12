@@ -52,6 +52,10 @@ in {
     };
 
     imports = [
+        # Import languages default
+        ./languages
+
+        # Import plugins
         ./comment.nix
         ./gitsigns.nix
         ./indent-blankline.nix

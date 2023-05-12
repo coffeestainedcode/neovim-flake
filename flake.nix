@@ -18,6 +18,14 @@
         nvim-tree = { url = "github:nvim-tree/nvim-tree.lua"; flake = false; };
         nvim-web-devicons = { url = "github:nvim-tree/nvim-web-devicons"; flake = false; };
 
+        # Languages (LSP, completion, etc)
+        lsp-config = { url = "github:neovim/nvim-lspconfig"; flake = false; };
+        nvim-cmp = { url = "github:hrsh7th/nvim-cmp"; flake = false; };
+        nvim-cmp-lsp = { url = "github:hrsh7th/cmp-nvim-lsp"; flake = false; };
+        luasnip = { url = "github:L3MON4D3/LuaSnip"; flake = false; };
+        cmp_luasnip = { url = "github:saadparwaiz1/cmp_luasnip"; flake = false; };
+        fidget = { url = "github:j-hui/fidget.nvim"; flake = false; };
+
         # Misc
         gitsigns = { url = "github:lewis6991/gitsigns.nvim"; flake = false; };
         lualine = { url = "github:nvim-lualine/lualine.nvim"; flake = false; };
@@ -63,6 +71,9 @@
                         which-key.enable = true;
                         vim-sleuth.enable = true;
                         nvim-surround.enable = true;
+                        languages = {
+                            nix.enable = true;
+                        };
                         theme = {
                             catppuccin = {
                                 enable = true;

@@ -49,6 +49,12 @@
             };
             neovimBuilder = (import ./lib/neovimBuilder.nix);
         in rec {
+            # For implementing in other NixOS Systems
+            overlays.default = final: prev: {
+                inherit neovimBuilder;
+                preconfigured = packages.default;
+            };
+
             apps.${system} = rec {
                 nvim = {
                     type = "app";

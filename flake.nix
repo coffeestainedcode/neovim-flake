@@ -75,6 +75,7 @@
                         };
                         languages = {
                             nix.enable = true;
+                            rust.enable = true;
                         };
                         theme = {
                             catppuccin = {

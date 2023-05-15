@@ -50,7 +50,7 @@
             neovimBuilder = (import ./lib/neovimBuilder.nix);
         in rec {
             # For implementing in other Nix flakes
-            overlays.${system}.default = final: prev: {
+            overlays.default = final: prev: {
                 inherit neovimBuilder;
                 preconfigured = packages.default;
             };

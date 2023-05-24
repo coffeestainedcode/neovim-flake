@@ -3,7 +3,6 @@
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-        flake-utils.url = "github:numtide/flake-utils";
 
         # Treesitter
         nvim-treesitter = { url = "github:nvim-treesitter/nvim-treesitter"; flake = false; };
@@ -42,74 +41,42 @@
         onedark = { url = "github:navarasu/onedark.nvim"; flake = false; };
     };
 
-    outputs = { self, nixpkgs, flake-utils, ... }@inputs:
-        flake-utils.lib.eachDefaultSystem (system: let
-            pkgs = import nixpkgs {
-                inherit system;
-            };
-            neovimBuilder = (import ./lib/neovimBuilder.nix);
-        in rec {
-            # For implementing in other Nix flakes
-            overlays.default = final: prev: {
-                inherit neovimBuilder;
-                preconfigured = packages.default;
-            };
+    outputs = { self, nixpkgs, ... }@inputs: let
+        systems = [
+            "aarch64-darwin"
+            "aarch64-linux"
+            "x86_64-darwin"
+            "x86_64-linux"
+        ];
+        forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
 
-            apps.${system} = rec {
-                nvim = {
-                    type = "app";
-                    program = "${packages.default}/bin/nvim";
-                };
-                default = nvim;
-            };
+        genPkgs = system: import nixpkgs {
+            inherit system;
+        };
 
-            packages = rec {
-                customNeovim = neovimBuilder {
-                    inherit pkgs inputs;
-                    config.customNeovim = {
-                        plugins = {
-                            comment.enable = true;
-                            gitsigns.enable = true;
-                            indent-blankline.enable = true;
-                            lualine.enable = true;
-                            treesitter.enable = true;
-                            telescope.enable = true;
-                            nvim-tree.enable = true;
-                            which-key.enable = true;
-                            vim-sleuth.enable = true;
-                            nvim-surround.enable = true;
-                        };
-                        languages = {
-                            nix.enable = true;
-                            rust.enable = true;
-                            c.enable = true;
-                        };
-                        theme = {
-                            catppuccin = {
-                                enable = true;
-                                setOnStartup = false;
-                                style = "latte";
-                            };
-                            tokyonight = {
-                                enable = true;
-                                setOnStartup = true;
-                                style = "storm";
-                            };
-                            gruvbox = {
-                                enable = true;
-                                setOnStartup = false;
-                                style = "light";
-                            };
-                            onedark = {
-                                enable = true;
-                                setOnStartup = false;
-                                style = "dark";
-                            };
-                        };
-                    };
-                };
-                default = customNeovim;
+        neovimBuilder = (import ./lib/neovimBuilder.nix);
+        default-config = (import ./default-config.nix);
+    in rec {
+        # For implementing in other Nix flakes
+        overlays.default = final: prev: {
+            inherit neovimBuilder;
+            preconfigured = packages.${prev.system}.default;
+        };
+
+        apps = forAllSystems (system: {
+            default = {
+                type = "app";
+                program = "${packages.${system}.default}/bin/nvim";
             };
-        }
-    );
+        });
+
+        packages = forAllSystems (system: let
+            pkgs = genPkgs system;
+        in {
+            default = neovimBuilder {
+                inherit pkgs inputs;
+                config.customNeovim = default-config;
+            };
+        });
+    };
 }

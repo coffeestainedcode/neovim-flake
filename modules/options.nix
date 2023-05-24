@@ -114,6 +114,12 @@ in
             type = types.bool;
             default = true;
         };
+
+        highlightOnYank = mkOption {
+            description = "Highlight on yank";
+            type = types.bool;
+            default = true;
+        };
     };
 
     config = {
@@ -139,6 +145,16 @@ in
                 vim.o.timeoutlen = ${toString cfg.timeoutlen}
                 vim.o.completeopt = ${builtins.concatStringsSep "," cfg.completeopt}
                 vim.o.termguicolors = ${boolToString cfg.termguicolors}
+                ${if cfg.highlightOnYank then ''
+                    local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+                    vim.api.nvim_create_autocmd('TextYankPost', {
+                        callback = function()
+                            vim.highlight.on_yank()
+                        end,
+                        group = highlight_group,
+                        pattern = '*',
+                    })
+                '' else ""}
             '';
         }];
     };

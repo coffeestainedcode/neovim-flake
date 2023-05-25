@@ -21,7 +21,7 @@ in {
         customNeovim.configRC = [{
             priority = 2;
             content = ''
-                lspconfig.nil_ls.setup{
+                require("lspconfig").nil_ls.setup{
                     autostart = true,
                     capabilities = capabilities,
                     on_attach = on_attach,

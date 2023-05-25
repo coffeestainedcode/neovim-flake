@@ -122,6 +122,7 @@ in {
     imports = [
         ./c.nix
         ./nix.nix
+        ./python.nix
         ./rust.nix
     ];
 }

@@ -12,9 +12,10 @@
         nvim-surround.enable = true;
     };
     languages = {
-        nix.enable = true;
-        rust.enable = true;
         c.enable = true;
+        nix.enable = true;
+        python.enable = true;
+        rust.enable = true;
     };
     theme = {
         catppuccin = {

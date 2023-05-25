@@ -69,6 +69,8 @@ in {
                 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
                 local capabilities = vim.lsp.protocol.make_client_capabilities()
                 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+                -- For CSS completion, but I think other languages should benefit as well
+                capabilities.textDocument.completion.completionItem.snippetSupport = true
 
                 local cmp = require 'cmp'
                 local luasnip = require 'luasnip'
@@ -121,6 +123,7 @@ in {
 
     imports = [
         ./c.nix
+        ./css.nix
         ./nix.nix
         ./python.nix
         ./rust.nix

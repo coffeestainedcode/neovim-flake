@@ -22,7 +22,7 @@ in {
 
         customNeovim.configRC = [{
             priority = 1;
-            content = ''
+            content = if (cfg.lsp.enable && cfg.cmp.enable && cfg.snippets.enable) then ''
                 -- Diagnostic keymaps
                 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
                 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
@@ -115,7 +115,7 @@ in {
                         { name = 'luasnip' },
                     },
                 }
-            '';
+            '' else '''';
         }];
     };
 

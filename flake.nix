@@ -1,5 +1,5 @@
 {
-    description = "Neovim flake for MY ideal development experience";
+    description = "Neovim flake for my ideal development experience";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -68,6 +68,10 @@
                 type = "app";
                 program = "${packages.${system}.default}/bin/nvim";
             };
+            empty = {
+                type = "app";
+                program = "${packages.${system}.empty}/bin/nvim";
+            };
         });
 
         packages = forAllSystems (system: let
@@ -76,6 +80,10 @@
             default = neovimBuilder {
                 inherit pkgs inputs;
                 config.customNeovim = default-config;
+            };
+            empty = neovimBuilder {
+                inherit pkgs inputs;
+                config.customNeovim = {};
             };
         });
     };

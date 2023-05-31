@@ -6,30 +6,27 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.customNeovim.languages.c;
+  cfg = config.customNeovim.languages.css;
 in {
-  options.customNeovim.languages.c = {
-    enable = mkEnableOption "Enable c/c++ language support";
+  options.customNeovim.languages.css = {
+    enable = mkEnableOption "Enable css language support";
   };
 
   config = mkIf cfg.enable {
-    customNeovim.languages.lsp.enable = true;
-    customNeovim.languages.cmp.enable = true;
-    customNeovim.languages.snippets.enable = true;
-
     customNeovim.plugins.treesitter.grammars = [
-      "c"
+      "css"
+      "scss"
     ];
 
     customNeovim.configRC = [
       {
         priority = 2;
         content = ''
-          require("lspconfig").clangd.setup{
+          require("lspconfig").cssls.setup {
               autostart = true,
               capabilities = capabilities,
               on_attach = on_attach,
-              cmd = {"${pkgs.clang-tools}/bin/clangd"},
+              cmd = {"${pkgs.nodePackages_latest.vscode-css-languageserver-bin}/bin/css-languageserver", "--stdio"},
           }
         '';
       }

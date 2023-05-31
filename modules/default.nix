@@ -57,7 +57,7 @@ in {
   imports = [
     ./options.nix
     ./theme.nix
-    ./languages
+    ./lsp
     ./plugins
   ];
 }

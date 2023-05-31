@@ -6,30 +6,26 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.customNeovim.languages.nix;
+  cfg = config.customNeovim.languages.c;
 in {
-  options.customNeovim.languages.nix = {
-    enable = mkEnableOption "Enable nix language support";
+  options.customNeovim.languages.c = {
+    enable = mkEnableOption "Enable c/c++ language support";
   };
 
   config = mkIf cfg.enable {
-    customNeovim.languages.lsp.enable = true;
-    customNeovim.languages.cmp.enable = true;
-    customNeovim.languages.snippets.enable = true;
-
     customNeovim.plugins.treesitter.grammars = [
-      "nix"
+      "c"
     ];
 
     customNeovim.configRC = [
       {
         priority = 2;
         content = ''
-          require("lspconfig").nil_ls.setup{
+          require("lspconfig").clangd.setup{
               autostart = true,
               capabilities = capabilities,
               on_attach = on_attach,
-              cmd = {"${pkgs.nil}/bin/nil"},
+              cmd = {"${pkgs.clang-tools}/bin/clangd"},
           }
         '';
       }

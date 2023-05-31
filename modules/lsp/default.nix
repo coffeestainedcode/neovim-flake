@@ -5,45 +5,28 @@
   ...
 }:
 with lib; let
-  cfg = config.customNeovim.languages;
-in {
-  options.customNeovim.languages = {
-    lsp.enable = mkEnableOption "enable lsp";
-    cmp.enable = mkEnableOption "enable cmp";
-    snippets.enable = mkEnableOption "enable snippets";
-  };
+  cfg = config.customNeovim.lsp;
 
+  available-languages = [
+    "c"
+    "css"
+    "nix"
+    "python"
+    "rust"
+    "typescript"
+  ];
+
+  any-language-active =
+    builtins.any
+    (language: config.customNeovim.languages.${language}.enable)
+    available-languages;
+in {
   config = {
-    customNeovim.installedPlugins = [
+    customNeovim.installedPlugins = builtins.concatLists [
       (
-        if cfg.lsp.enable
-        then "lsp-config"
-        else ""
-      )
-      (
-        if cfg.lsp.enable
-        then "fidget"
-        else ""
-      )
-      (
-        if cfg.cmp.enable
-        then "nvim-cmp"
-        else ""
-      )
-      (
-        if cfg.cmp.enable
-        then "nvim-cmp-lsp"
-        else ""
-      )
-      (
-        if cfg.snippets.enable
-        then "luasnip"
-        else ""
-      )
-      (
-        if cfg.snippets.enable
-        then "cmp_luasnip"
-        else ""
+        if any-language-active
+        then ["lsp-config" "fidget" "nvim-cmp" "nvim-cmp-lsp" "luasnip" "cmp_luasnip"]
+        else []
       )
     ];
 
@@ -51,7 +34,7 @@ in {
       {
         priority = 1;
         content =
-          if (cfg.lsp.enable && cfg.cmp.enable && cfg.snippets.enable)
+          if any-language-active
           then ''
             -- Diagnostic keymaps
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -153,12 +136,5 @@ in {
     ];
   };
 
-  imports = [
-    ./c.nix
-    ./css.nix
-    ./nix.nix
-    ./python.nix
-    ./rust.nix
-    ./typescript.nix
-  ];
+  imports = builtins.map (language: ./languages/${language}.nix) available-languages;
 }

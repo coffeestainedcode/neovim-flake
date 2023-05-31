@@ -13,10 +13,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    customNeovim.languages.lsp.enable = true;
-    customNeovim.languages.cmp.enable = true;
-    customNeovim.languages.snippets.enable = true;
-
     customNeovim.plugins.treesitter.grammars = [
       "typescript"
     ];

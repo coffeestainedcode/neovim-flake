@@ -11,7 +11,10 @@
     vim-sleuth.enable = true;
     nvim-surround.enable = true;
   };
-  lsp.format-on-save = false;
+  lsp.null-ls = {
+    enable = true;
+    format-on-save = false;
+  };
   languages = {
     c = {
       enable = true;

@@ -6,7 +6,6 @@
 }:
 with lib; let
   cfg = config.customNeovim.lsp;
-
   available-languages = [
     "c"
     "css"
@@ -15,45 +14,32 @@ with lib; let
     "rust"
     "typescript"
   ];
-
   any-language-active =
     builtins.any
     (language: config.customNeovim.languages.${language}.enable)
-    available-languages;
-
-  any-language-formatting =
-    builtins.any
-    (language: config.customNeovim.languages.${language}.format)
-    available-languages;
+    config.customNeovim.lsp.available-languages;
 in {
-  options.customNeovim = {
-    lsp.languages.format-commands = mkOption {
-      type = with types; listOf str;
-      default = "";
+  options.customNeovim.lsp = {
+    available-languages = mkOption {
+        description = "INTERNAL: defining languages for reuse elsewhere";
+        type = with types; listOf str;
+        default = available-languages;
     };
-    lsp.format-on-save = mkEnableOption "Format on save";
   };
-
-  config = {
-    customNeovim.installedPlugins = builtins.concatLists [
-      (
-        if any-language-active
-        then ["lsp-config" "fidget" "nvim-cmp" "nvim-cmp-lsp" "luasnip" "cmp_luasnip"]
-        else []
-      )
-      (
-        if any-language-formatting
-        then ["null-ls"]
-        else []
-      )
+  config = { available-langages = cfg.available-languages; } //  (mkIf any-language-active {
+    customNeovim.installedPlugins = [
+        "lsp-config"
+        "fidget"
+        "nvim-cmp"
+        "nvim-cmp-lsp"
+        "luasnip"
+        "cmp_luasnip"
     ];
 
     customNeovim.configRC = [
       {
         priority = 1;
-        content =
-          if any-language-active
-          then ''
+        content = ''
             -- Diagnostic keymaps
             vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
@@ -148,38 +134,12 @@ in {
                     { name = 'luasnip' },
                 },
             }
-
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                default_timeout = 5000,
-                sources = {
-                    ${toString (builtins.map (_:_) config.customNeovim.lsp.languages.format-commands)}
-                },
-                ${if cfg.format-on-save
-                  then ''
-                    on_attach = function(client, bufnr)
-                        if client.supports_method("textDocument/formatting") then
-                            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                            vim.api.nvim_create_autocmd("BufWritePre", {
-                                group = augroup,
-                                buffer = bufnr,
-                                callback = function()
-                                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                                    -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-                                    vim.lsp.buf.format({ async = false })
-                                end,
-                            })
-                        end
-                    end,
-                  ''
-              else ""}
-            })
-          ''
-          else '''';
-      }
+          '';
+        }
     ];
-  };
+  });
 
-  imports = builtins.map (language: ./languages/${language}.nix) available-languages;
+  imports = [
+      ./null-ls.nix
+  ] ++ builtins.map (language: ./languages/${language}.nix) available-languages;
 }

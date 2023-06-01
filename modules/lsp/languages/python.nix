@@ -18,7 +18,7 @@ in {
       "python"
     ];
 
-    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
         null_ls.builtins.formatting.black.with({
           command = "${pkgs.black}/bin/black",

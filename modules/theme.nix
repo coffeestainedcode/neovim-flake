@@ -13,8 +13,7 @@ in {
       enable = mkEnableOption "Enable ${name} theme.";
       setOnStartup = mkEnableOption "Enable ${name} to autostart. Only works if enable is true.";
       style = mkOption {
-        description = ''          Style to be applied to theme on startup.
-                          Only works if enable and setOnStartup are true.'';
+        description = "Style to be applied to theme on startup. Only works if enable and setOnStartup are true.";
         type = with types; enum styles;
         default = default-style;
       };

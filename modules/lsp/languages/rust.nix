@@ -18,7 +18,7 @@ in {
       "rust"
     ];
 
-    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
         null_ls.builtins.formatting.rustfmt.with({
           command = "${pkgs.rustfmt}/bin/rustfmt",

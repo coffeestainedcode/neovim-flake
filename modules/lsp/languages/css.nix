@@ -19,7 +19,7 @@ in {
       "scss"
     ];
 
-    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
         null_ls.builtins.formatting.prettier.with({
           command = "${pkgs.nodePackages_latest.prettier}/bin/prettier",

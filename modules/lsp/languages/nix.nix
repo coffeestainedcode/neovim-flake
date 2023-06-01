@@ -18,7 +18,7 @@ in {
       "nix"
     ];
 
-    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
         null_ls.builtins.formatting.alejandra.with({
           command = "${pkgs.alejandra}/bin/alejandra",

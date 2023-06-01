@@ -18,7 +18,7 @@ in {
       "c"
     ];
 
-    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
         null_ls.builtins.formatting.clang_format.with({
           command = "${pkgs.clang-tools}/bin/clang-format",

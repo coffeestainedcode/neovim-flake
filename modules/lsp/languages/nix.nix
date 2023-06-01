@@ -20,8 +20,8 @@ in
 
     customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
       ''
-        null_ls.builtins.formatting.alejandra.with({
-          command = "${pkgs.alejandra}/bin/alejandra",
+        null_ls.builtins.formatting.nixpkgs_fmt.with({
+          command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt",
         }),
       ''
     ];

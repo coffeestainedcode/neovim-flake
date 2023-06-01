@@ -13,12 +13,12 @@
   };
   lsp.null-ls = {
     enable = true;
-    format-on-save = false;
   };
   languages = {
     c = {
       enable = true;
       format = true;
+      diagnostic = true;
     };
     css = {
       enable = true;

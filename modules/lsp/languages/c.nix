@@ -10,7 +10,8 @@ in
 {
   options.customNeovim.languages.c = {
     enable = mkEnableOption "Enable c/c++ language support";
-    format = mkEnableOption "Enable formatting for c";
+    format = mkEnableOption "Enable formatting for c/c++";
+    diagnostic = mkEnableOption "Enable diagnostic for c/c++";
   };
 
   config = mkIf cfg.enable {
@@ -18,13 +19,22 @@ in
       "c"
     ];
 
-    customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
-      ''
-        null_ls.builtins.formatting.clang_format.with({
-          command = "${pkgs.clang-tools}/bin/clang-format",
-        }),
-      ''
-    ];
+    customNeovim.lsp.null-ls = {
+      format-commands = mkIf cfg.format [
+        ''
+          null_ls.builtins.formatting.clang_format.with({
+            command = "${pkgs.clang-tools}/bin/clang-format",
+          }),
+        ''
+      ];
+      diagnostic-commands = mkIf cfg.diagnostic [
+        ''
+          null_ls.builtins.diagnostics.cpplint.with({
+            command = "${pkgs.cpplint}/bin/cpplint",
+          }),
+        ''
+      ];
+    };
 
     customNeovim.configRC = [
       {

@@ -10,12 +10,21 @@ with builtins; let
 in {
   options.customNeovim.languages.css = {
     enable = mkEnableOption "Enable css language support";
+    format = mkEnableOption "Enable formatting for css";
   };
 
   config = mkIf cfg.enable {
     customNeovim.plugins.treesitter.grammars = [
       "css"
       "scss"
+    ];
+
+    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+      ''
+        null_ls.builtins.formatting.prettier.with({
+          command = "${pkgs.nodePackages_latest.prettier}/bin/prettier",
+        }),
+      ''
     ];
 
     customNeovim.configRC = [

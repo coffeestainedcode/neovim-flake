@@ -11,13 +11,32 @@
     vim-sleuth.enable = true;
     nvim-surround.enable = true;
   };
+  lsp.format-on-save = false;
   languages = {
-    c.enable = true;
-    css.enable = true;
-    nix.enable = true;
-    python.enable = true;
-    rust.enable = true;
-    typescript.enable = true;
+    c = {
+      enable = true;
+      format = true;
+    };
+    css = {
+      enable = true;
+      format = true;
+    };
+    nix = {
+      enable = true;
+      format = true;
+    };
+    python = {
+      enable = true;
+      format = true;
+    };
+    rust = {
+      enable = true;
+      format = true;
+    };
+    typescript = {
+      enable = true;
+      format = true;
+    };
   };
   theme = {
     catppuccin = {

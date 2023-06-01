@@ -10,11 +10,20 @@ with builtins; let
 in {
   options.customNeovim.languages.c = {
     enable = mkEnableOption "Enable c/c++ language support";
+    format = mkEnableOption "Enable formatting for c";
   };
 
   config = mkIf cfg.enable {
     customNeovim.plugins.treesitter.grammars = [
       "c"
+    ];
+
+    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+      ''
+        null_ls.builtins.formatting.clang_format.with({
+          command = "${pkgs.clang-tools}/bin/clang-format",
+        }),
+      ''
     ];
 
     customNeovim.configRC = [

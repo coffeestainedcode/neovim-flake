@@ -10,11 +10,20 @@ with builtins; let
 in {
   options.customNeovim.languages.rust = {
     enable = mkEnableOption "Enable rust language support";
+    format = mkEnableOption "Enable formatting for rust";
   };
 
   config = mkIf cfg.enable {
     customNeovim.plugins.treesitter.grammars = [
       "rust"
+    ];
+
+    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+      ''
+        null_ls.builtins.formatting.rustfmt.with({
+          command = "${pkgs.rustfmt}/bin/rustfmt",
+        }),
+      ''
     ];
 
     customNeovim.configRC = [

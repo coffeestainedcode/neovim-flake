@@ -63,6 +63,10 @@
       url = "github:j-hui/fidget.nvim";
       flake = false;
     };
+    null-ls = {
+      url = "github:jose-elias-alvarez/null-ls.nvim";
+      flake = false;
+    };
 
     # Misc
     gitsigns = {

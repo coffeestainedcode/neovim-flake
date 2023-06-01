@@ -10,11 +10,20 @@ with builtins; let
 in {
   options.customNeovim.languages.nix = {
     enable = mkEnableOption "Enable nix language support";
+    format = mkEnableOption "Enable formatting for nix";
   };
 
   config = mkIf cfg.enable {
     customNeovim.plugins.treesitter.grammars = [
       "nix"
+    ];
+
+    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+      ''
+        null_ls.builtins.formatting.alejandra.with({
+          command = "${pkgs.alejandra}/bin/alejandra",
+        }),
+      ''
     ];
 
     customNeovim.configRC = [

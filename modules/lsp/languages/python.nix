@@ -10,11 +10,20 @@ with builtins; let
 in {
   options.customNeovim.languages.python = {
     enable = mkEnableOption "Enable python language support";
+    format = mkEnableOption "Enable formatting for python";
   };
 
   config = mkIf cfg.enable {
     customNeovim.plugins.treesitter.grammars = [
       "python"
+    ];
+
+    customNeovim.lsp.languages.format-commands = mkIf cfg.format [
+      ''
+        null_ls.builtins.formatting.black.with({
+          command = "${pkgs.black}/bin/black",
+        }),
+      ''
     ];
 
     customNeovim.configRC = [

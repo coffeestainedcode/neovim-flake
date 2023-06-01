@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.options;
-in {
+in
+{
   options.customNeovim.options = {
     mapleader = mkOption {
       description = "Key to use for the map leader";
@@ -47,13 +47,13 @@ in {
 
     mouse = mkOption {
       description = "Enables mouse support";
-      type = with types; enum ["" "a" "n" "v" "i" "c"];
+      type = with types; enum [ "" "a" "n" "v" "i" "c" ];
       default = "";
     };
 
     clipboard = mkOption {
       description = "Enable vim to interact with system clipboard";
-      type = with types; enum ["" "unnamed" "unnamedplus"];
+      type = with types; enum [ "" "unnamed" "unnamedplus" ];
       default = "";
     };
 
@@ -83,7 +83,7 @@ in {
 
     signcolumn = mkOption {
       description = "When and how to draw the signcolumn.";
-      type = with types; enum ["auto" "no" "yes"];
+      type = with types; enum [ "auto" "no" "yes" ];
       default = "yes";
     };
 
@@ -108,7 +108,7 @@ in {
     completeopt = mkOption {
       description = "A comma-separated list of options for Insert mode completion.";
       type = with types; listOf str;
-      default = ["menuone" "noselect"];
+      default = [ "menuone" "noselect" ];
     };
 
     termguicolors = mkOption {

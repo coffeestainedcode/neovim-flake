@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.gitsigns;
-in {
+in
+{
   options.customNeovim.plugins.gitsigns = {
     enable = mkEnableOption "Enable gitsigns";
   };

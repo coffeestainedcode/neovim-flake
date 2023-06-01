@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.languages.typescript;
-in {
+in
+{
   options.customNeovim.languages.typescript = {
     enable = mkEnableOption "Enable typescript language support";
     format = mkEnableOption "Enable formatting for typescript/javascript";

@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.nvim-tree;
-in {
+in
+{
   options.customNeovim.plugins.nvim-tree = {
     enable = mkEnableOption "Enable nvim-tree";
   };

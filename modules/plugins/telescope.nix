@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.telescope;
-in {
+in
+{
   options.customNeovim.plugins.telescope = {
     enable = mkEnableOption "Enable telescope";
   };

@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.languages.nix;
-in {
+in
+{
   options.customNeovim.languages.nix = {
     enable = mkEnableOption "Enable nix language support";
     format = mkEnableOption "Enable formatting for nix";

@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.comment;
-in {
+in
+{
   options.customNeovim.plugins.comment = {
     enable = mkEnableOption "Enable comment";
   };

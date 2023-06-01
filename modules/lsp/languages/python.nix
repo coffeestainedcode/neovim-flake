@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.languages.python;
-in {
+in
+{
   options.customNeovim.languages.python = {
     enable = mkEnableOption "Enable python language support";
     format = mkEnableOption "Enable formatting for python";

@@ -1,29 +1,31 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.theme;
-in {
-  options.customNeovim.theme = let
-    mkThemeOptions = name: styles: default-style: {
-      enable = mkEnableOption "Enable ${name} theme.";
-      setOnStartup = mkEnableOption "Enable ${name} to autostart. Only works if enable is true.";
-      style = mkOption {
-        description = "Style to be applied to theme on startup. Only works if enable and setOnStartup are true.";
-        type = with types; enum styles;
-        default = default-style;
+in
+{
+  options.customNeovim.theme =
+    let
+      mkThemeOptions = name: styles: default-style: {
+        enable = mkEnableOption "Enable ${name} theme.";
+        setOnStartup = mkEnableOption "Enable ${name} to autostart. Only works if enable is true.";
+        style = mkOption {
+          description = "Style to be applied to theme on startup. Only works if enable and setOnStartup are true.";
+          type = with types; enum styles;
+          default = default-style;
+        };
       };
+    in
+    {
+      catppuccin = mkThemeOptions "catppuccin" [ "latte" "frappe" "macchiato" "mocha" ] "mocha";
+      tokyonight = mkThemeOptions "tokyonight" [ "night" "storm" "day" "moon" ] "night";
+      gruvbox = mkThemeOptions "gruvbox" [ "dark" "light" ] "dark";
+      onedark = mkThemeOptions "onedark" [ "dark" "darker" "cool" "deep" "warm" "warmer" "light" ] "dark";
     };
-  in {
-    catppuccin = mkThemeOptions "catppuccin" ["latte" "frappe" "macchiato" "mocha"] "mocha";
-    tokyonight = mkThemeOptions "tokyonight" ["night" "storm" "day" "moon"] "night";
-    gruvbox = mkThemeOptions "gruvbox" ["dark" "light"] "dark";
-    onedark = mkThemeOptions "onedark" ["dark" "darker" "cool" "deep" "warm" "warmer" "light"] "dark";
-  };
 
   config = {
     customNeovim.installedPlugins = [
@@ -49,30 +51,32 @@ in {
       )
     ];
 
-    customNeovim.configRC = let
-      /*
+    customNeovim.configRC =
+      let
+        /*
       This function checks if multiple theme config have setOnStartup true;
             Returns 1 if valid con and 0 if invalid
-      */
-      checkMultipleStartup = attrSet: let
-        createArr = attrSet: map (n: n.setOnStartup) (builtins.attrValues attrSet);
-        length = builtins.length (pkgs.lib.remove false (createArr attrSet));
-      in
-        length == 0 || length == 1;
+        */
+        checkMultipleStartup = attrSet:
+          let
+            createArr = attrSet: map (n: n.setOnStartup) (builtins.attrValues attrSet);
+            length = builtins.length (pkgs.lib.remove false (createArr attrSet));
+          in
+          length == 0 || length == 1;
 
-      /*
+        /*
       Checks if setOnStartup is true while enable is false.
            Returns 1 if valid and of if invalid
-      */
-      checkStartWithoutEnableValidity = attrSet:
-        !(builtins.any (n: !(n.enable || !n.setOnStartup)) (builtins.attrValues attrSet));
+        */
+        checkStartWithoutEnableValidity = attrSet:
+          !(builtins.any (n: !(n.enable || !n.setOnStartup)) (builtins.attrValues attrSet));
 
-      assertionA = checkMultipleStartup cfg;
-      assertionB = checkStartWithoutEnableValidity cfg;
-    in
+        assertionA = checkMultipleStartup cfg;
+        assertionB = checkStartWithoutEnableValidity cfg;
+      in
       assert (assertionA && assertionB)
-      || abort
-      ''        Error in setting themes.
+        || abort
+        ''        Error in setting themes.
                     Check that only one setOnStartup is true AND
                     if setOnStartup is true for any theme, enable is also true.''; [
         {

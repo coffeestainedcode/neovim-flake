@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.nvim-surround;
-in {
+in
+{
   options.customNeovim.plugins.nvim-surround = {
     enable = mkEnableOption "Enable vim-surround";
   };

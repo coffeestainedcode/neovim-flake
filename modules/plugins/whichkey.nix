@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.which-key;
-in {
+in
+{
   options.customNeovim.plugins.which-key = {
     enable = mkEnableOption "Enable which-key";
   };

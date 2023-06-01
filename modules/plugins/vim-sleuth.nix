@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.vim-sleuth;
-in {
+in
+{
   options.customNeovim.plugins.vim-sleuth = {
     enable = mkEnableOption "Enable vim-sleuth";
   };

@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.lualine;
-in {
+in
+{
   options.customNeovim.plugins.lualine = {
     enable = mkEnableOption "Enable lualine";
   };

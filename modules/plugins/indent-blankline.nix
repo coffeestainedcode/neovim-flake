@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.indent-blankline;
-in {
+in
+{
   options.customNeovim.plugins.indent-blankline = {
     enable = mkEnableOption "Enable indent-blankline";
   };

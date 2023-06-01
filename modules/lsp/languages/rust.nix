@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.languages.rust;
-in {
+in
+{
   options.customNeovim.languages.rust = {
     enable = mkEnableOption "Enable rust language support";
     format = mkEnableOption "Enable formatting for rust";

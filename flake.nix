@@ -117,40 +117,42 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-    eachSystem = f:
-      nixpkgs.lib.genAttrs [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ]
-      (system: f nixpkgs.legacyPackages.${system});
+  outputs =
+    { self
+    , nixpkgs
+    , ...
+    } @ inputs:
+    let
+      eachSystem = f:
+        nixpkgs.lib.genAttrs [
+          "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "x86_64-linux"
+        ]
+          (system: f nixpkgs.legacyPackages.${system});
 
-    neovimBuilder = import ./lib/neovimBuilder.nix;
-    default-config = import ./default-config.nix;
-  in rec {
-    formatter = eachSystem (pkgs: pkgs.alejandra);
+      neovimBuilder = import ./lib/neovimBuilder.nix;
+      default-config = import ./default-config.nix;
+    in
+    rec {
+      formatter = eachSystem (pkgs: pkgs.nixpkgs-fmt);
 
-    # For implementing in other Nix flakes
-    overlays.default = final: prev: {
-      inherit neovimBuilder;
-      preconfigured = packages.${prev.system}.default;
+      # For implementing in other Nix flakes
+      overlays.default = final: prev: {
+        inherit neovimBuilder;
+        preconfigured = packages.${prev.system}.default;
+      };
+
+      packages = eachSystem (pkgs: {
+        default = neovimBuilder {
+          inherit pkgs inputs;
+          config.customNeovim = default-config;
+        };
+        empty = neovimBuilder {
+          inherit pkgs inputs;
+          config.customNeovim = { };
+        };
+      });
     };
-
-    packages = eachSystem (pkgs: {
-      default = neovimBuilder {
-        inherit pkgs inputs;
-        config.customNeovim = default-config;
-      };
-      empty = neovimBuilder {
-        inherit pkgs inputs;
-        config.customNeovim = {};
-      };
-    });
-  };
 }

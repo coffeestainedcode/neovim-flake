@@ -1,13 +1,13 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.languages.c;
-in {
+in
+{
   options.customNeovim.languages.c = {
     enable = mkEnableOption "Enable c/c++ language support";
     format = mkEnableOption "Enable formatting for c";

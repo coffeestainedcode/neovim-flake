@@ -1,18 +1,18 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib;
 with builtins; let
   cfg = config.customNeovim.plugins.treesitter;
-in {
+in
+{
   options.customNeovim.plugins.treesitter = {
     enable = mkEnableOption "Enable tree-sitter";
     grammars = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
     };
   };
 

@@ -24,7 +24,7 @@ in
     scrolloff = mkOption {
       description = "Minimal number of screen lines to keep above and below the cursor.";
       type = types.int;
-      default = 8;
+      default = 4;
     };
 
     hlsearch = mkOption {

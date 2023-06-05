@@ -71,6 +71,10 @@
       url = "github:jose-elias-alvarez/null-ls.nvim";
       flake = false;
     };
+    lsp-signature = {
+      url = "github:ray-x/lsp_signature.nvim";
+      flake = false;
+    };
 
     # Misc
     gitsigns = {

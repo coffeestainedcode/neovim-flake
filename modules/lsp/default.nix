@@ -35,6 +35,7 @@ in
       "nvim-cmp-lsp"
       "luasnip"
       "cmp_luasnip"
+      "lsp-signature"
     ];
 
     customNeovim.configRC = [
@@ -135,6 +136,7 @@ in
                   { name = 'luasnip' },
               },
           }
+          require ("lsp_signature").setup{}
         '';
       }
     ];

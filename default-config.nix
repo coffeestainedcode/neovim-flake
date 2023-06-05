@@ -40,6 +40,10 @@
       enable = true;
       format = true;
     };
+    ocaml = {
+      enable = true;
+      format = true;
+    };
   };
   theme = {
     catppuccin = {

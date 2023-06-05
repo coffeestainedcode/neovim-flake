@@ -9,6 +9,7 @@ with lib; let
     "c"
     "css"
     "nix"
+    "ocaml"
     "python"
     "rust"
     "typescript"

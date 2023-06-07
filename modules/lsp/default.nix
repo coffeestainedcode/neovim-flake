@@ -90,6 +90,7 @@ in
           capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
           -- For CSS completion, but I think other languages should benefit as well
           capabilities.textDocument.completion.completionItem.snippetSupport = true
+          capabilities.offsetEncoding = 'utf-16'
 
           local cmp = require 'cmp'
           local luasnip = require 'luasnip'

@@ -55,6 +55,10 @@
       url = "github:hrsh7th/cmp-nvim-lsp";
       flake = false;
     };
+    nvim-cmp-path = {
+      url = "github:hrsh7th/cmp-path";
+      flake = false;
+    };
     luasnip = {
       url = "github:L3MON4D3/LuaSnip";
       flake = false;

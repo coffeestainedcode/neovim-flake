@@ -33,6 +33,7 @@ in
       "fidget"
       "nvim-cmp"
       "nvim-cmp-lsp"
+      "nvim-cmp-path"
       "luasnip"
       "cmp_luasnip"
       "lsp-signature"
@@ -135,6 +136,7 @@ in
               sources = {
                   { name = 'nvim_lsp' },
                   { name = 'luasnip' },
+                  { name = 'path' },
               },
           }
           require ("lsp_signature").setup{}

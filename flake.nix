@@ -83,6 +83,10 @@
       url = "github:weilbith/nvim-code-action-menu";
       flake = false;
     };
+    lspkind = {
+      url = "github:onsails/lspkind.nvim";
+      flake = false;
+    };
 
     # Misc
     gitsigns = {

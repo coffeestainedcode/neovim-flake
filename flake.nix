@@ -79,6 +79,10 @@
       url = "github:ray-x/lsp_signature.nvim";
       flake = false;
     };
+    code-action-menu = {
+      url = "github:weilbith/nvim-code-action-menu";
+      flake = false;
+    };
 
     # Misc
     gitsigns = {

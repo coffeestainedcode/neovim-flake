@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "code-action-menu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671523188,
+        "narHash": "sha256-7szx+Me6WhrANbmfQ6C6gfSVB2owd02b3iZYhz7K6wY=",
+        "owner": "weilbith",
+        "repo": "nvim-code-action-menu",
+        "rev": "e4399dbaf6eabff998d3d5f1cbcd8d9933710027",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weilbith",
+        "repo": "nvim-code-action-menu",
+        "type": "github"
+      }
+    },
     "comment": {
       "flake": false,
       "locked": {
@@ -388,6 +404,7 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "cmp_luasnip": "cmp_luasnip",
+        "code-action-menu": "code-action-menu",
         "comment": "comment",
         "fidget": "fidget",
         "gitsigns": "gitsigns",

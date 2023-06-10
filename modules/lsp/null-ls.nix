@@ -34,17 +34,19 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-          local null_ls = require("null-ls")
-          null_ls.setup({
-              default_timeout = 5000,
-              sources = {
-                  ${toString (builtins.map (_:_) config.customNeovim.lsp.null-ls.format-commands)}
-                  ${toString (builtins.map (_:_) config.customNeovim.lsp.null-ls.diagnostic-commands)}
-              },
-          })
-        '';
+        content =
+          # INIT-LUA
+          ''
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                default_timeout = 5000,
+                sources = {
+                    ${toString (builtins.map (_:_) config.customNeovim.lsp.null-ls.format-commands)}
+                    ${toString (builtins.map (_:_) config.customNeovim.lsp.null-ls.diagnostic-commands)}
+                },
+            })
+          '';
       }
     ];
   };

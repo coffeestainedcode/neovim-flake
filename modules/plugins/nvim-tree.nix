@@ -20,11 +20,13 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('nvim-tree').setup {
-          }
-          vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('nvim-tree').setup {
+            }
+            vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+          '';
       }
     ];
   };

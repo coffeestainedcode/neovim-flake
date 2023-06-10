@@ -20,10 +20,11 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('Comment').setup {
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('Comment').setup {}
+          '';
       }
     ];
   };

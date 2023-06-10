@@ -19,6 +19,7 @@ in
     ];
 
     customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
+      # INIT-LUA
       ''
         null_ls.builtins.formatting.prettier.with({
           command = "${pkgs.nodePackages_latest.prettier}/bin/prettier",
@@ -29,14 +30,16 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require("lspconfig").tsserver.setup {
-              autostart = true,
-              capabilities = capabilities,
-              on_attach=on_attach,
-              cmd = {"${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio"}
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require("lspconfig").tsserver.setup {
+                autostart = true,
+                capabilities = capabilities,
+                on_attach=on_attach,
+                cmd = {"${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio"}
+            }
+          '';
       }
     ];
   };

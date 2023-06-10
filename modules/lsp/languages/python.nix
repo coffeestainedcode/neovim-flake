@@ -19,6 +19,7 @@ in
     ];
 
     customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
+      # INIT-LUA
       ''
         null_ls.builtins.formatting.black.with({
           command = "${pkgs.black}/bin/black",
@@ -29,26 +30,28 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require("lspconfig").pylsp.setup{
-              autostart = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              settings = {
-                  pylsp = {
-                      configurationSources = { "pycodestyle", "flake8" },
-                      plugins = {
-                          pycodestyle = { enabled = true },
-                          flake8 = {
-                              enabled = true,
-                              executable = "${pkgs.python3Packages.flake8}/bin/flake8"
-                          }
-                      }
-                  }
-              },
-              cmd = {"${pkgs.python311Packages.python-lsp-server}/bin/pylsp"},
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require("lspconfig").pylsp.setup{
+                autostart = true,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    pylsp = {
+                        configurationSources = { "pycodestyle", "flake8" },
+                        plugins = {
+                            pycodestyle = { enabled = true },
+                            flake8 = {
+                                enabled = true,
+                                executable = "${pkgs.python3Packages.flake8}/bin/flake8"
+                            }
+                        }
+                    }
+                },
+                cmd = {"${pkgs.python311Packages.python-lsp-server}/bin/pylsp"},
+            }
+          '';
       }
     ];
   };

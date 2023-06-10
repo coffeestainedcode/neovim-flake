@@ -19,6 +19,7 @@ in
     ];
 
     customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
+      # INIT-LUA
       ''
         null_ls.builtins.formatting.nixpkgs_fmt.with({
           command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt",
@@ -29,14 +30,16 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require("lspconfig").nil_ls.setup{
-              autostart = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              cmd = {"${pkgs.nil}/bin/nil"},
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require("lspconfig").nil_ls.setup{
+                autostart = true,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                cmd = {"${pkgs.nil}/bin/nil"},
+            }
+          '';
       }
     ];
   };

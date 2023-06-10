@@ -19,10 +19,12 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('which-key').setup {
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('which-key').setup {
+            }
+          '';
       }
     ];
   };

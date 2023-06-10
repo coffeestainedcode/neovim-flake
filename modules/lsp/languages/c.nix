@@ -21,6 +21,7 @@ in
 
     customNeovim.lsp.null-ls = {
       format-commands = mkIf cfg.format [
+        # INIT-LUA
         ''
           null_ls.builtins.formatting.clang_format.with({
             command = "${pkgs.clang-tools}/bin/clang-format",
@@ -28,6 +29,7 @@ in
         ''
       ];
       diagnostic-commands = mkIf cfg.diagnostic [
+        # INIT-LUA
         ''
           null_ls.builtins.diagnostics.cpplint.with({
             command = "${pkgs.cpplint}/bin/cpplint",
@@ -39,14 +41,15 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require("lspconfig").clangd.setup{
-              autostart = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              cmd = {"${pkgs.clang-tools}/bin/clangd"},
-          }
-        '';
+        content = # INIT-LUA
+          ''
+            require("lspconfig").clangd.setup{
+                autostart = true,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                cmd = {"${pkgs.clang-tools}/bin/clangd"},
+            }
+          '';
       }
     ];
   };

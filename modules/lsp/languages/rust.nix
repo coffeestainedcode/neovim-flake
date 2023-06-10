@@ -19,6 +19,7 @@ in
     ];
 
     customNeovim.lsp.null-ls.format-commands = mkIf cfg.format [
+      # INIT-LUA
       ''
         null_ls.builtins.formatting.rustfmt.with({
           command = "${pkgs.rustfmt}/bin/rustfmt",
@@ -29,14 +30,16 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require'lspconfig'.rust_analyzer.setup{
-              autostart = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"},
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require'lspconfig'.rust_analyzer.setup{
+                autostart = true,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"},
+            }
+          '';
       }
     ];
   };

@@ -20,12 +20,14 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('indent_blankline').setup {
-              char = '┊',
-              show_trailing_blankline_indent = false,
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('indent_blankline').setup {
+                char = '┊',
+                show_trailing_blankline_indent = false,
+            }
+          '';
       }
     ];
   };

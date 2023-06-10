@@ -20,6 +20,7 @@ in
 
     customNeovim.lsp.null-ls = {
       format-commands = mkIf cfg.format [
+        # INIT-LUA
         ''
           null_ls.builtins.formatting.ocamlformat.with({
             command = "${pkgs.ocamlformat}/bin/ocamlformat",
@@ -31,14 +32,16 @@ in
     customNeovim.configRC = [
       {
         priority = 2;
-        content = ''
-          require("lspconfig").ocamllsp.setup{
-              autostart = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              cmd = {"${pkgs.ocamlPackages.ocaml-lsp}/bin/ocamllsp"},
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require("lspconfig").ocamllsp.setup{
+                autostart = true,
+                capabilities = capabilities,
+                on_attach = on_attach,
+                cmd = {"${pkgs.ocamlPackages.ocaml-lsp}/bin/ocamllsp"},
+            }
+          '';
       }
     ];
   };

@@ -128,41 +128,45 @@ in
     customNeovim.configRC = [
       {
         priority = 0;
-        content = ''
-          vim.g.mapleader = '${cfg.mapleader}'
-          vim.g.maplocalleader = '${cfg.mapleader}'
-          vim.o.wrap = ${boolToString cfg.wrap}
-          vim.o.scrolloff = ${toString cfg.scrolloff}
-          vim.o.hlsearch = ${boolToString cfg.hlsearch}
-          vim.wo.number = ${boolToString cfg.number}
-          vim.wo.relativenumber = ${boolToString cfg.relativenumber}
-          vim.o.mouse = '${cfg.mouse}'
-          vim.o.clipboard = '${cfg.clipboard}'
-          vim.o.breakindent = ${boolToString cfg.breakindent}
-          vim.o.undofile = ${boolToString cfg.undofile}
-          vim.o.ignorecase = ${boolToString cfg.ignorecase}
-          vim.o.smartcase = ${boolToString cfg.smartcase}
-          vim.wo.signcolumn = '${cfg.signcolumn}'
-          vim.o.updatetime = ${toString cfg.updatetime}
-          vim.o.timeout = ${boolToString cfg.timeout}
-          vim.o.timeoutlen = ${toString cfg.timeoutlen}
-          vim.o.completeopt = ${builtins.concatStringsSep "," cfg.completeopt}
-          vim.o.termguicolors = ${boolToString cfg.termguicolors}
-          ${
-            if cfg.highlightOnYank
-            then ''
-              local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-              vim.api.nvim_create_autocmd('TextYankPost', {
-                  callback = function()
-                      vim.highlight.on_yank()
-                  end,
-                  group = highlight_group,
-                  pattern = '*',
-              })
-            ''
-            else ""
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            vim.g.mapleader = "${cfg.mapleader}"
+            vim.g.maplocalleader = "${cfg.mapleader}"
+            vim.o.wrap = ${boolToString cfg.wrap}
+            vim.o.scrolloff = ${toString cfg.scrolloff}
+            vim.o.hlsearch = ${boolToString cfg.hlsearch}
+            vim.wo.number = ${boolToString cfg.number}
+            vim.wo.relativenumber = ${boolToString cfg.relativenumber}
+            vim.o.mouse = "${cfg.mouse}"
+            vim.o.clipboard = "${cfg.clipboard}"
+            vim.o.breakindent = ${boolToString cfg.breakindent}
+            vim.o.undofile = ${boolToString cfg.undofile}
+            vim.o.ignorecase = ${boolToString cfg.ignorecase}
+            vim.o.smartcase = ${boolToString cfg.smartcase}
+            vim.wo.signcolumn = "${cfg.signcolumn}"
+            vim.o.updatetime = ${toString cfg.updatetime}
+            vim.o.timeout = ${boolToString cfg.timeout}
+            vim.o.timeoutlen = ${toString cfg.timeoutlen}
+            vim.o.completeopt = ${builtins.concatStringsSep "," cfg.completeopt}
+            vim.o.termguicolors = ${boolToString cfg.termguicolors}
+            ${
+              if cfg.highlightOnYank
+              then
+              # INIT-LUA 
+              ''
+                local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+                vim.api.nvim_create_autocmd('TextYankPost', {
+                    callback = function()
+                        vim.highlight.on_yank()
+                    end,
+                    group = highlight_group,
+                    pattern = '*',
+                })
+              ''
+              else ""
+            }
+          '';
       }
     ];
   };

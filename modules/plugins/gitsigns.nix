@@ -20,18 +20,20 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('gitsigns').setup {
-              signs = {
-                  add = { text = '+' },
-                  change = { text = '~' },
-                  delete = { text = '_' },
-                  topdelete = { text = '‾' },
-                  changedelete = { text = '~' },
-              },
-              current_line_blame = true,
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('gitsigns').setup {
+                signs = {
+                    add = { text = '+' },
+                    change = { text = '~' },
+                    delete = { text = '_' },
+                    topdelete = { text = '‾' },
+                    changedelete = { text = '~' },
+                },
+                current_line_blame = true,
+            }
+          '';
       }
     ];
   };

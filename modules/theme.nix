@@ -94,7 +94,9 @@ in
             }
             ${
               if cfg.gruvbox.setOnStartup
-              then ''
+              then
+              # INIT-LUA
+              ''
                 vim.o.background = "${cfg.gruvbox.style}"
                 vim.cmd.colorscheme 'gruvbox'
               ''
@@ -102,7 +104,9 @@ in
             }
             ${
               if cfg.onedark.setOnStartup
-              then ''
+              then
+              # INIT-LUA
+              ''
                 require('onedark').setup {
                     style = '${cfg.onedark.style}'
                 }

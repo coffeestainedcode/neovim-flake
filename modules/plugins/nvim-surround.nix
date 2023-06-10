@@ -19,10 +19,12 @@ in
     customNeovim.configRC = [
       {
         priority = 1;
-        content = ''
-          require('nvim-surround').setup {
-          }
-        '';
+        content =
+          # INIT-LUA
+          ''
+            require('nvim-surround').setup {
+            }
+          '';
       }
     ];
   };

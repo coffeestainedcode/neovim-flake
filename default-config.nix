@@ -4,7 +4,7 @@
     gitsigns.enable = true;
     indent-blankline.enable = true;
     lualine.enable = true;
-    treesitter.enable = true;
+    treesitter.enable = false;
     telescope.enable = true;
     nvim-tree.enable = true;
     which-key.enable = true;
